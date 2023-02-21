@@ -1,5 +1,28 @@
 <?php 
 
+
+if (isset($_GET['password'])) {
+    $password = createPassword();
+}
+
+function createPassword()
+{
+    $alphabetNumber = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()[]';
+    $password = '';
+    $i = 1;
+
+    if (isset($_GET['password'])) {
+        $passwordLength = $_GET['password'];
+        do {
+            $randomChar = $alphabetNumber[rand(0, strlen($alphabetNumber) - 1)];
+            echo $randomChar;
+            $i++;
+        } 
+        while ($i <= $passwordLength);
+    }
+    return $password;
+}
+;
                 
  ?>
 
@@ -16,5 +39,17 @@
 </head>
 <body>
     
+
+<div class="container"></div>
+        <h1>PHP Password Generator</h1>
+
+        <form  method="GET" name="generator">
+            <label for="password"></label>
+            <p>Inserisci quanti caratteri dovrà avere la tua password</p>
+            <input type="text" name="password" id="idPassword">
+            <button type="submit">Genera</button>
+            <button type="reset">Annulla</button>
+        </form>
+        </div>
 </body>
 </html>
